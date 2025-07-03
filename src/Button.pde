@@ -1,15 +1,8 @@
 class Button extends Widget {
   ClickHandler onClick;
   Button(int x, int y, int w, int h, String text) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.text = text;
-    this.visible = true;
-    this.enabled = true;
-    this.textColor = color(0);
-    this.bgColor = color(200);
+   super(x, y, w, h, true, true, text, color(0), color(200)); 
+    this.onClick = null; 
   }
   
   void display (){
@@ -25,7 +18,7 @@ class Button extends Widget {
   }
   
   void handleInput(){
-     if (!visible && !enabled){
+     if (!visible || !enabled){
        return;
      }
       if (mousePressed && mouseInWidget(mouseX, mouseY)) {

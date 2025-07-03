@@ -1,11 +1,3 @@
-void setup() {
-  size(400, 400);
-}
-
-void draw() {
-  background(255);
-}
-
 class GUIManager{
   HashMap<String, Screen> screens;
   Screen currentScreen;
@@ -21,31 +13,28 @@ class GUIManager{
       screens.put(name, screen);
     }
     if (currentScreen == null){
-      currentScreen = name;
+      currentScreen = screen;
     }
   }
   
-  void setCurrentScreen (Screen S){
-    if (screens.containsKey(name)) {
-      currentScreen = name;
+  void setCurrentScreen (String screenName){
+    if (screens.containsKey(screenName)) {
+      currentScreen = screens.get(screenName);
     }
+    else {
+    println("Screen not found: " + screenName);
+  }
   }
   
   void display(){
-    if (currentScreen != null){
-      screens.get(currentScreen).display();
-    }
-  }
-  
-  void handleMouse(int x, int y, boolean pressed){
     if (currentScreen != null) {
-      screens.get(currentScreen).handleMouse();
+      currentScreen.display();
     }
   }
   
-  void handleInput (char key, int keyCode, boolean pressed) {
-     if (currentScreenName != null) {
-      screens.get(currentScreen).handleInput();
+  void handleInput () {
+    if (currentScreen != null) {
+      currentScreen.handleInput();
     }
   }
   
