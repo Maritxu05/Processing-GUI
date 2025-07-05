@@ -2,8 +2,8 @@ class TextInput extends Widget {
   String value ="";
   boolean isActive = false;
   boolean processedKey = false;
-  TextInput(int x, int y, int w, int h, String text) {
-   super(x, y, w, h, true, true, text, color(0), color(200)); 
+  TextInput(int x, int y, int w, int h, String text, color bgColor) {
+   super(x, y, w, h, true, true, text, color(0), bgColor); 
   }
   
   void display (){
@@ -46,6 +46,11 @@ class TextInput extends Widget {
         processedKey = false;
       }
       
+  }
+  
+  boolean getText (){
+    if (value.length() > 0) return true;
+    return false;
   }
   
 }
