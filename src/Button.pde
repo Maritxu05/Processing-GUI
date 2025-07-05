@@ -1,7 +1,9 @@
 class Button extends Widget {
   ClickHandler onClick;
-  Button(int x, int y, int w, int h, String text) {
-   super(x, y, w, h, true, true, text, color(0), color(200)); 
+  int textSize = 20;
+  Button(int x, int y, int w, int h, boolean visible, boolean enabled,
+  String text, color textColor,  color bgColor) {
+    super(x, y, w, h, visible, enabled, text, textColor, bgColor); 
     this.onClick = null; 
   }
   
@@ -14,6 +16,7 @@ class Button extends Widget {
     
     fill (textColor);
     textAlign (CENTER, CENTER);
+    textSize(textSize);
     text(text, x + w/2, y + h/2);
   }
   
