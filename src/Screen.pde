@@ -1,49 +1,49 @@
-class GUIManager{
-  HashMap<String, Screen> screens;
-  Screen currentScreen;
-  boolean isHandlingInput = false;
-  GUIManager(){
-    screens = new HashMap<String, Screen>();
-    currentScreen = null;
+class Screen {
+  String title;
+  color bgColor;
+  HashMap<String, Widget> widgets;
+  
+  Screen(String title, color bgColor) {
+    this.title = title;
+    this.bgColor = bgColor;
+    this.widgets = (widgets != null) ? widgets : new HashMap<String, Widget>();
   }
   
-   void addScreen(String name, Screen screen) {
-    
-     if(!screens.containsKey(name)){
-      screens.put(name, screen);
-    }
-    if (currentScreen == null){
-      currentScreen = screen;
+  void addWidget(String name, Widget widget) {
+    if (name != null && widget != null) {  
+      widgets.put(name, widget);
     }
   }
   
-  void setCurrentScreen (String screenName){
-    if (screens.containsKey(screenName)) {
-      currentScreen = screens.get(screenName);
-      println (screenName + " is the new screen");
+  Widget getWidget(String name) {
+    if (name != null && widgets.containsKey(name)) {
+      return widgets.get(name);
     }
-    else {
-    println("Screen not found: " + screenName);
-  }
+    return null;
   }
   
-  Screen getCurrentScreen (){
-    return currentScreen;
+  void setBackgroundColor(int bgColor) {
+    this.bgColor = bgColor;
   }
   
-  void display(){
-    if (currentScreen != null) {
-      currentScreen.display();
-    }
+  void setTitle(String title) {
+    this.title = title;
   }
   
-  void handleInput () {
-    if (currentScreen != null && !isHandlingInput) {
-    isHandlingInput = true;
-    currentScreen.handleInput();
-    isHandlingInput = false;
+  void display() {
+    background(bgColor);
+    for (Widget widget : widgets.values()) {
+      if (widget.visible) {  
+        widget.display();
+      }
     }
   }
-  
 
+  void handleInput() {
+    for (Widget widget : widgets.values()) {
+      if (widget.visible && widget.enabled) { 
+        widget.handleInput();
+      }
+    }
+  }
 }

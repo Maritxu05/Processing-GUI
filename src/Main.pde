@@ -291,6 +291,11 @@ void draw() {
     finalScreen.addWidget("answerLabel", answerLabel);
   }
   guiManager.display();
-  guiManager.handleInput();
   
 }
+  void mousePressed() {
+    guiManager.handleInput();
+  }
+  void keyPressed() {
+    guiManager.handleInput();
+  }
