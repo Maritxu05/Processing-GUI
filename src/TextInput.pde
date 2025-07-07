@@ -10,7 +10,14 @@ class TextInput extends Widget {
     if (!visible){
     return;
     }
-    fill(bgColor);
+    if (bgColor !=150 && bgColor != textColor)
+    {
+      fill(bgColor);
+    }
+    else
+    {
+      fill(255);
+    }
     rect(x, y, w, h);
     
     fill (textColor);
@@ -35,16 +42,11 @@ class TextInput extends Widget {
     if (isActive && keyPressed && !processedKey){
       if (key == BACKSPACE && value.length() > 0) {
         value = value.substring(0, value.length() - 1);
-        processedKey = true;
       } 
       else if (key != CODED && key != ENTER && key != RETURN) {
         value += key;
-        processedKey = true;
       }
     }
-    if (!keyPressed){
-        processedKey = false;
-      }
       
   }
   
