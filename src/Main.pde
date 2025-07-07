@@ -11,7 +11,12 @@ CheckBoxWithImageList flowerOptions;
 CheckBoxList fourthScreenOptions;
 Button goToFinal;
 int answer;
+Label cheesecakeLabel;
+Label chocolateLabel;
+Label vanillaLabel;
+Label cookiesLabel;
 Label answerLabel;
+Screen finalScreen;
 void setup() {
   size(600, 600);
   guiManager = new GUIManager();
@@ -21,12 +26,13 @@ void setup() {
   Screen secondScreen = new Screen("Second", getPastelColor(PastelColor.LAVENDER));
   Screen thirdScreen = new Screen("Third", getPastelColor(PastelColor.LEMON));
   Screen fourthScreen = new Screen("Fourth", getPastelColor(PastelColor.MINT));
-  Screen finalScreen = new Screen("Final", getPastelColor(PastelColor.PEACH));
+  finalScreen = new Screen("Final", getPastelColor(PastelColor.PEACH));
 
   goToFirst = new Button(450, 500, 100, 40, false, false, "Start!",getPastelColor(PastelColor.BLACK) , getPastelColor(PastelColor.PINK));
   goToFirst.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("First");
+      println("Button goToFirst was pressed");
     }
   };
   String welcome = "WELCOME";
@@ -44,6 +50,7 @@ void setup() {
   returnToMain.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Main");
+       println("Button returnToMain was pressed");
     }
   };
   
@@ -51,6 +58,7 @@ void setup() {
   goToSecond.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Second");
+       println("Button goToSecond was pressed");
     }
   };
   
@@ -67,6 +75,7 @@ void setup() {
   returnToFirst.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("First");
+       println("Button returnToFirst was pressed");
     }
   };
   
@@ -74,6 +83,7 @@ void setup() {
   goToThird.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Third");
+       println("Button goToThird was pressed");
     }
   };
   
@@ -94,6 +104,7 @@ void setup() {
   returnToSecond.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Second");
+       println("Button returnToSecond was pressed/n");
     }
   };
   
@@ -101,6 +112,7 @@ void setup() {
   goToFourth.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Fourth");
+       println("Button goToFourth was pressed");
     }
   };
   
@@ -117,6 +129,7 @@ void setup() {
   returnToThird.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Third");
+       println("Button returnToThird was pressed");
     }
   };
   
@@ -124,6 +137,7 @@ void setup() {
   goToFinal.onClick = new ClickHandler() {
     public void onClick() {
       guiManager.setCurrentScreen("Final");
+       println("Button goToFinal was pressed");
     }
   };
   
@@ -141,13 +155,13 @@ void setup() {
   Label finaleLabel = new Label(30, 30, 540, 80, finale, 40, false, false, getPastelColor(PastelColor.PINK) );
   
   String Cheesecake = "CHEESECAKE";
-  Label cheesecakeLabel = new Label(30, 200, 540, 80, Cheesecake, 100, false, false, getPastelColor(PastelColor.SKY) );
+  cheesecakeLabel = new Label(30, 200, 540, 80, Cheesecake, 100, false, false, getPastelColor(PastelColor.SKY) );
   String Chocolate = "CHOCOLATE";
-  Label chocolateLabel = new Label(30, 200, 540, 80, Chocolate, 100, false, false, getPastelColor(PastelColor.SKY) );
+  chocolateLabel = new Label(30, 200, 540, 80, Chocolate, 100, false, false, getPastelColor(PastelColor.SKY) );
   String Vanilla = "VANILLA";
-  Label vanillaLabel = new Label(30, 200, 540, 80, Vanilla, 100, false, false, getPastelColor(PastelColor.SKY) );
+  vanillaLabel = new Label(30, 200, 540, 80, Vanilla, 100, false, false, getPastelColor(PastelColor.SKY) );
   String Cookies = "COOKIES AND CREAM";
-  Label cookiesLabel = new Label(30, 200, 540, 80, Cookies, 100, false, false, getPastelColor(PastelColor.SKY) );
+  cookiesLabel = new Label(30, 200, 540, 80, Cookies, 100, false, false, getPastelColor(PastelColor.SKY) );
   
   mainScreen.addWidget("goToFirst", goToFirst);
   mainScreen.addWidget("FirstLabel", firstLabel);
@@ -260,6 +274,21 @@ void draw() {
         answer =i;
       }
     }
+  }
+  if (guiManager.getCurrentScreen().title.equals("Final")) {
+    if (answer == 0){
+    answerLabel = cheesecakeLabel;
+    }
+    else if (answer == 1){
+    answerLabel = chocolateLabel;
+    }
+    else if (answer == 2){
+    answerLabel = vanillaLabel;
+    }
+    else{
+    answerLabel = cookiesLabel;
+    }  
+    finalScreen.addWidget("answerLabel", answerLabel);
   }
   guiManager.display();
   guiManager.handleInput();
