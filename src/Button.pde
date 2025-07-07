@@ -1,7 +1,6 @@
 class Button extends Widget {
   ClickHandler onClick;
   int textSize = 20;
-  boolean wasPressed = false;
   Button(int x, int y, int w, int h, boolean visible, boolean enabled,
   String text, color textColor,  color bgColor) {
     super(x, y, w, h, visible, enabled, text, textColor, bgColor); 
@@ -25,14 +24,11 @@ class Button extends Widget {
      if (!visible || !enabled){
        return;
      }
-     if (!wasPressed && mousePressed && mouseInWidget(mouseX, mouseY)){
+     if ( mousePressed && mouseInWidget(mouseX, mouseY)){
        doOnClick();
-       wasPressed = true;
+      
      }
-    
-      if (!mousePressed) {
-         wasPressed = false;
-    }
+     
   }
   
   void doOnClick(){
